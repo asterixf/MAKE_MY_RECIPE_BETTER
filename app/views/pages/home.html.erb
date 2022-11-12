@@ -2,7 +2,7 @@
   <div class="container">
     <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
     <p>Change your life and learn to code at one of our campuses around the world.</p>
-    <%= form_with url: recipes_path, method: :get, class: "d-flex" do %>
+    <%= form_with url: recipes_path, method: :get, class: "d-flex col-6" do %>
   <%= text_field_tag :query,
     params[:query],
     class: "form-control",
