@@ -1,4 +1,6 @@
 <h2><%= @recipe.name %></h2>
+<%= cl_image_tag "n69jz8k2sii96jqtjoxd", height: 300, width: 400, crop: :fill %>
 <p><%= @recipe.ingredients %></p>
 <p><%= @recipe.directions %></p>
 <%= link_to "Delete", recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+<%= link_to "Edit", edit_recipe_path(@recipe) %>
