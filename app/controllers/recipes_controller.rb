@@ -1,6 +1,10 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all
+    if params[:query].present?
+      @recipes = Recipe.where(title: params[:query])
+    else
+      @recipes = Recipe.all
+    end
   end
 
   def show
