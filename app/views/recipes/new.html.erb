@@ -1,6 +1,8 @@
 <%= form_with model: @recipe do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
+  <%= f.label :photo %>
+  <%= f.file_field :photo, as: :file %>
   <%= f.label :ingredients %>
   <%= f.text_area :ingredients %>
   <%= f.label :directions %>
