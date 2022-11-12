@@ -1,0 +1,4 @@
+<h2><%= @bookmark.name %></h2>
+<p><%= @bookmark.ingredients %></p>
+<p><%= @bookmark.directions %></p>
+<%= link_to "Delete", bookmark_path(@bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
