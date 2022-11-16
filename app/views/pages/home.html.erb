@@ -1,6 +1,6 @@
 <div class="banner mb-5" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1514986888952-8cd320577b68?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80);">
   <div class="container">
-    <h1>Make My Recepi Better!<strong>Sharing flavor with the world!!</strong>!</h1>
+    <h1>Make My Recepi Better! <strong>Sharing flavor with the world!!</strong>!</h1>
     <p>United we cook!</p>
     <%= form_with url: recipes_path, method: :get, class: "d-flex col-6" do %>
     <%= text_field_tag :query,
@@ -14,11 +14,13 @@
 </div>
 <div class="container d-flex">
 <% @recipes.each do |recipe| %>
+  <%= link_to recipe_path(recipe), class: "card-recipe" do %>
     <div class="card m-2" style="width: 18rem;">
-      <%= cl_image_tag recipe.photo.key, class: "card-img-top" %>
+      <%= cl_image_tag recipe.photo.key, class: "card-img-top", height: 250 %>
       <div class="card-body">
         <h5 class="card-text"><strong><%= recipe.name %></strong></h5>
       </div>
     </div>
+    <% end %>
 <% end %>
 </div>
