@@ -1,11 +1,29 @@
 <div class= "container mt-3">
-<h2><%= @recipe.name %></h2>
-<%= cl_image_tag @recipe.photo.key, height: 300, width: 400, crop: :fill, class: "my-3" %>
-<h3>Ingridients:</h3>
-<p><%= @recipe.ingredients %></p>
-<p><%= @recipe.directions %></p>
-<% if current_user == @recipe.user %>
-<%= link_to "Delete", recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
-<%= link_to "Edit", edit_recipe_path(@recipe) %>
-<% end %>
+  <h2><%= @recipe.name %></h2>
+  <%= cl_image_tag @recipe.photo.key, height: 300, width: 400, crop: :fill, class: "my-3" %>
+  <h3>Ingridients:</h3>
+  <p><%= @recipe.ingredients %></p>
+  <p><%= @recipe.directions %></p>
+  <% if current_user == @recipe.user %>
+    <%= link_to "Delete", recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+    <%= link_to "Edit", edit_recipe_path(@recipe) %>
+  <% end %>
+</div>
+
+<div class= "container mt-3">
+  <h3>Reviews</h3>
+  <% @recipe.reviews.each do |review| %>
+    <div class="card m-2" style="width: 18rem;">
+      <div class="card-body">
+        <div class="star">
+          <% review.score.times do %>
+            ★
+          <% end %>
+        </div>
+        <%= review.comment %>
+        <br>
+        Reviewed on <%= review.created_at.strftime('%m-%d-%Y') %>
+      </div>
+    </div>
+  <% end %>
 </div>

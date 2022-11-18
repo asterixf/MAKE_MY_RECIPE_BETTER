@@ -8,8 +8,12 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.recipe = @recipe
-    @review.save
-    redirect_to recipe_path(@recipe)
+    @review.user = current_user
+    if @review.save
+      redirect_to recipe_path(@recipe)
+    else
+      render action: :new, status: :unprocessable_entity
+    end
   end
 
   private
@@ -19,6 +23,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:content)
+    params.require(:review).permit(:comment, :score)
   end
 end
