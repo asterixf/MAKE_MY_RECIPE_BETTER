@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
-  has_many :reviews, dependent: :destroy
+  validates :score, presence: true
+  validates :comment, presence: true
   belongs_to :user
   belongs_to :recipe
 end
