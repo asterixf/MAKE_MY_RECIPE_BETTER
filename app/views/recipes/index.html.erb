@@ -1,5 +1,5 @@
 <div class="container mt-5 col-4">
-<%= form_with url: recipes_path, method: :get, class: "d-flex" do %>
+<%= form_with url: recipes_path, method: :get, class: "d-flex mb-5" do %>
   <%= text_field_tag :query,
     params[:query],
     class: "form-control",
@@ -9,14 +9,16 @@
 <% end %>
 </div>
 <div class="container d-flex">
+ <div class="row row-cols-4">
 <% @recipes.each do |recipe| %>
-   <%= link_to recipe_path(recipe), class: "card-recipe" do %>
-    <div class="card m-2" style="width: 18rem;">
-      <%= cl_image_tag recipe.photo.key, class: "card-img-top", height: 250 %>
+ <%= link_to recipe_path(recipe), class: "card-recipe" do %>
+    <div class="card m-2 col">
+      <%= cl_image_tag recipe.photo.key, class: "card-img-top" %>
       <div class="card-body">
         <h5 class="card-text"><strong><%= recipe.name %></strong></h5>
       </div>
     </div>
     <% end %>
 <% end %>
+</div>
 </div>

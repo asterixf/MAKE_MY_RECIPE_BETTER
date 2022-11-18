@@ -15,9 +15,9 @@
 <div class="container d-flex">
  <div class="row row-cols-4">
 <% @recipes.each do |recipe| %>
-  <%= link_to recipe_path(recipe) do %>
-    <div class="card m-2 col" style="width: 16rem;">
-      <%= cl_image_tag recipe.photo.key, class: "card-img-top", height: 250 %>
+ <%= link_to recipe_path(recipe), class: "card-recipe" do %>
+    <div class="card m-2 col">
+      <%= cl_image_tag recipe.photo.key, class: "card-img-top" %>
       <div class="card-body">
         <h5 class="card-text"><strong><%= recipe.name %></strong></h5>
       </div>
