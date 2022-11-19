@@ -8,12 +8,13 @@
     class: "form-control",
     placeholder: "Find a recipe"
   %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
+  <%= submit_tag "Search", class: "btn btt-red-sm" %>
   <% end %>
   </div>
 </div>
 <div class="container my-5">
 <h2><strong>Featured recipes:</strong></h2>
+<p class= "fw-semibold">Not sure what to cook <%= link_to "Show me all recipes!", recipes_path, class: "btn btt-red-sm" %></p>
 </div>
 <%= render "shared/recipe_card" %>
   <div class= "d-flex justify-content-around mt-5">
