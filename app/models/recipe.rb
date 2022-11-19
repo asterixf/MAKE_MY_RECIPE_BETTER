@@ -9,4 +9,6 @@ class Recipe < ApplicationRecord
       tsearch: { prefix: true } 
     }
 
+  has_many :reviews
+
 end
