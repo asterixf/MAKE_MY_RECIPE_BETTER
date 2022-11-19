@@ -11,7 +11,8 @@
 </div>
 
 <div class= "container mt-3">
-  <h3>Reviews</h3>
+  <h3>Reviews:</h3>
+  <%= link_to "Post a new review", new_recipe_review_path(@recipe) %>
   <% @recipe.reviews.each do |review| %>
     <div class="card m-2" style="width: 18rem;">
       <div class="card-body">
