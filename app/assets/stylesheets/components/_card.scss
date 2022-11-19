@@ -11,4 +11,31 @@
 .star{
   font-size: 20px;
   color: rgb(255, 145, 0);
+  display: flex;
+}
+
+
+.average-score {
+  display: flex;
+  padding-left: 15px;
+}
+
+.star-rating {
+  position: relative;
+  width: 5em;
+  height: 1em;
+  font-size: 17px;
+}
+
+.star-rating-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #ffcc33;
+  height: 25px;
+}
+.star-rating-back {
+  color: #ccc;
 }
