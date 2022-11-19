@@ -29,7 +29,7 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     @recipe.update(recipe_params)
-    redirect_to recipes_path(@recipe)
+    redirect_to recipes_path
   end
 
   def destroy
