@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   def index
     if params[:query].present?
-      @recipes = Recipe.where(name: params[:query])
+      @recipes = Recipe.where("lower(name) LIKE ?", "%" + params[:query].downcase + "%")
     else
       @recipes = Recipe.all
     end

@@ -1,7 +1,7 @@
 <div class="container mt-5 col-4">
 <%= form_with url: recipes_path, method: :get, class: "d-flex mb-5" do %>
   <%= text_field_tag :query,
-    params[:query],
+    "",
     class: "form-control",
     placeholder: "Find a recipe"
   %>
