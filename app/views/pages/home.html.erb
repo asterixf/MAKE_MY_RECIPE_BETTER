@@ -12,17 +12,26 @@
   <% end %>
   </div>
 </div>
+
 <div class="container d-flex">
  <div class="row row-cols-4">
-<% @recipes.each do |recipe| %>
- <%= link_to recipe_path(recipe), class: "card-recipe" do %>
-    <div class="card m-2 col">
-      <%= cl_image_tag recipe.photo.key, class: "card-img-top" %>
-      <div class="card-body">
-        <h5 class="card-text"><strong><%= recipe.name %></strong></h5>
-      </div>
-    </div>
+    <% @recipes.each do |recipe| %>
+      <%= link_to recipe_path(recipe), class: "card-recipe" do %>
+        <div class="card m-2 col">
+          <%= cl_image_tag recipe.photo.key, class: "card-img-top" %>
+          <div class="card-body">
+            <h5 class="card-text"><strong><%= recipe.name %></strong></h5>
+            <div class="average-score mb-3">
+              <div class="star-rating ml-1">
+                <div class="star-rating-front" style="width: <%= recipe.avg_score_percentage %>%">★★★★★</div>
+                <div class="star-rating-back">★★★★★</div>
+              </div>
+            <div class="average-score-display">
+              （<%= recipe.avg_score %> points）
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-<% end %>
-</div>
+  </div>
 </div>
