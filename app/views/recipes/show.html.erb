@@ -12,8 +12,8 @@
 
 <div class= "container mt-3">
   <h3>Reviews:</h3>
-  <% if @recipe.user != current_user %>
-    <%= link_to "Post a new review", new_recipe_review_path(@recipe) %>
+  <% if @recipe.user != current_user && !Review.find_by(user: current_user,recipe: @recipe)%>
+    <%= link_to "Post a review", new_recipe_review_path(@recipe), class: "btn btt-red-sm" %>
   <% end %>
   <% @recipe.reviews.each do |review| %>
     <div class="card m-2" style="width: 18rem;">
