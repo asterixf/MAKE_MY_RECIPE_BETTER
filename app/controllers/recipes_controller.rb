@@ -19,7 +19,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
     @recipe.save
-    redirect_to recipes_path(@recipe)
+    redirect_to recipe_path(@recipe)
   end
 
   def edit
