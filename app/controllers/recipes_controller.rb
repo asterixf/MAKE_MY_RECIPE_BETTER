@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   def index
     if params[:query].present?
-      @recipes = Recipe.where(name: params[:query])
+      @recipes = Recipe.where("lower(name) LIKE ?", "%" + params[:query].downcase + "%")
     else
       @recipes = Recipe.all
     end
@@ -19,7 +19,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
     @recipe.save
-    redirect_to recipes_path(@recipe)
+    redirect_to recipe_path(@recipe)
   end
 
   def edit
