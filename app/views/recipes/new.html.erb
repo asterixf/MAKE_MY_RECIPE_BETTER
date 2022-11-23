@@ -1,10 +1,25 @@
+<% if @old_recipe %>
+
+<div class="container col-6 mt-3 h-container">
+<%= simple_form_for @recipe do |f| %>
+  <%= f.hidden_field :recipe_id, value: @old_recipe.id %>
+  <%= f.hidden_field :variation_status, value: true %>
+  <%= f.input :name, label: "Recipe Title", input_html: {value: @old_recipe.name} %>
+  <%= f.input :photo, as: :file %>
+  <%= f.input :ingredients, input_html: {value: @old_recipe.ingredients} %>
+  <%= f.input :directions, input_html: {value: @old_recipe.directions} %>
+  <%= f.button :submit, class: "btt-red-sm" %>
+<% end %>
+</div>
+
+<% end %>
+
 <div class="container col-6 mt-3 h-container">
 <%= simple_form_for @recipe do |f| %>
   <%= f.input :name, label: "Recipe Title" %>
   <%= f.input :photo, as: :file %>
   <%= f.input :ingredients %>
   <%= f.input :directions %>
-  <!--<%= f.input :variation_status, as: :boolean, label: "variation recipe" %>-->
   <%= f.button :submit, class: "btt-red-sm" %>
 <% end %>
 </div>
