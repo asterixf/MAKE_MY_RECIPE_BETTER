@@ -9,6 +9,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :bookmarks
   has_many :recipes
+  has_many :recipes, through: :bookmarks
   has_many :reviews
   has_one_attached :photo
 end
