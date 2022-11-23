@@ -1,34 +1,59 @@
-<div class= "container mt-3">
-  <h2><%= @recipe.name %></h2>
-  <%= cl_image_tag @recipe.photo.key, height: 300, width: 400, crop: :fill, class: "my-3" %>
-  <h3>Ingredients:</h3>
-  <p><%= @recipe.ingredients %></p>
-   <h3>Directions:</h3>
-  <p><%= @recipe.directions %></p>
-  <% if current_user == @recipe.user %>
-    <%= link_to "Delete", recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn--orange" %>
-    <%= link_to "Edit", edit_recipe_path(@recipe), class: "btn btn--orange" %>
-  <% end %>
-    <%= link_to "Variation", new_recipe_path(@recipe), class: "btn btn--orange" %>
-</div>
-
-<div class= "container mt-3">
-  <h3>Reviews:</h3>
-  <% if @recipe.user != current_user && !Review.find_by(user: current_user,recipe: @recipe)%>
-    <%= link_to "Post a review", new_recipe_review_path(@recipe), class: "btn btt-red-sm" %>
-  <% end %>
-  <% @recipe.reviews.each do |review| %>
-    <div class="card m-2" style="width: 18rem;">
-      <div class="card-body">
-        <div class="star">
-          <% review.score.times do %>
-            ★
-          <% end %>
+<div class= "container">
+  <div class="row">
+    <div class="col-12 col-lg-8">
+      <h2><%= @recipe.name %></h2>
+      <%= cl_image_tag @recipe.photo.key, height: 300, width: 400, crop: :fill, class: "my-3" %>
+      <h3>Ingredients:</h3>
+      <p><%= @recipe.ingredients %></p>
+      <h3>Directions:</h3>
+      <p><%= @recipe.directions %></p>
+      <% if current_user == @recipe.user %>
+        <%= link_to "Delete", recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn--orange" %>
+        <%= link_to "Edit", edit_recipe_path(@recipe), class: "btn btn--orange" %>
+      <% end %>
+      <% if @recipe.recipe_id %>
+      <% else %>
+        <%= link_to "Variation", new_recipe_path(:variation => @recipe.id), class: "btn btn--orange" %>
+      <% end %>
+      <br>
+      <br>
+      <h3>Reviews:</h3>
+      <% if @recipe.user != current_user && !Review.find_by(user: current_user,recipe: @recipe)%>
+        <%= link_to "Post a review", new_recipe_review_path(@recipe), class: "btn btt-red-sm" %>
+      <% end %>
+      <% @recipe.reviews.each do |review| %>
+        <div class="card m-2" style="width: 18rem;">
+          <div class="card-body">
+            <div class="star">
+              <% review.score.times do %>
+                ★
+              <% end %>
+            </div>
+            <%= review.comment %>
+            <br>
+            Reviewed on <%= review.created_at.strftime('%m-%d-%Y') %>
+          </div>
         </div>
-        <%= review.comment %>
-        <br>
-        Reviewed on <%= review.created_at.strftime('%m-%d-%Y') %>
-      </div>
+      <% end %>
     </div>
-  <% end %>
+
+    <div class="col-12 col-lg-4">
+      <% if @recipe.recipe_id %>
+      <% else %>
+        <div class="cards">
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+            Breakfast
+          </div>
+
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/lunch.jpg)">
+            Lunch
+          </div>
+
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/dinner.jpg)">
+            Dinner
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

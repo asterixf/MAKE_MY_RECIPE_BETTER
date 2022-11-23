@@ -13,6 +13,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @old_recipe = Recipe.find(params[:variation]) if params[:variation]
   end
 
   def create
@@ -41,6 +42,10 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
+    if params[:recipe][:recipe_id]
+    params.require(:recipe).permit(:name, :photo, :ingredients, :directions, :variation_status, :recipe_id)
+    else
     params.require(:recipe).permit(:name, :photo, :ingredients, :directions, :variation_status)
+    end
   end
 end
