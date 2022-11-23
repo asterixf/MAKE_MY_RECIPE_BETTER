@@ -1,5 +1,5 @@
 <ul>
   <% @bookmarks.each do |bookmark| %>
-        <li><%= link_to bookmark.name, bookmark_path(bookmark) %></li>
+        <li><%= bookmark.recipe.name %></li>
   <% end %>
 </ul>

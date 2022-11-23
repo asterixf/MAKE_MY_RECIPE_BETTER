@@ -7,6 +7,7 @@
   <% if current_user == @recipe.user %>
     <%= link_to "Delete", recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
     <%= link_to "Edit", edit_recipe_path(@recipe) %>
+    <%# <%= link_to "Bookmark", recipe_bookmarks_path(@recipe), data: {turbo_method: :post} %> 
   <% end %>
 </div>
 
