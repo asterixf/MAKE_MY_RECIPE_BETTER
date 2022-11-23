@@ -8,30 +8,20 @@
     class: "form-control",
     placeholder: "Find a recipe"
   %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
+  <%= submit_tag "Search", class: "btn btt-red-sm" %>
   <% end %>
   </div>
 </div>
-
-<div class="container d-flex">
-  <div class="row row-cols-4">
-    <% @recipes.each do |recipe| %>
-      <%= link_to recipe_path(recipe), class: "card-recipe" do %>
-        <div class="card m-2 col">
-          <%= cl_image_tag recipe.photo.key, class: "card-img-top" %>
-          <div class="card-body">
-            <h5 class="card-text"><strong><%= recipe.name %></strong></h5></div>
-            <div class="average-score mb-3">
-              <div class="star-rating ml-1">
-                <div class="star-rating-front" style="width: <%= recipe.avg_score_percentage %>%">★★★★★</div>
-                <div class="star-rating-back">★★★★★</div>
-              </div>
-            <div class="average-score-display">
-              （<%= recipe.avg_score %> points）
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+<div class="container my-5">
+<h2><strong>Featured recipes:</strong></h2>
+<p class= "fw-semibold">Not sure what to cook <%= link_to "Show me all recipes!", recipes_path, class: "btn btt-red-sm" %></p>
 </div>
+<%= render "shared/recipe_card" %>
+  <div class= "d-flex justify-content-around mt-5">
+    <a href="https://www.homedepot.com/" target="_blank" rel="noopener noreferrer">
+    <%= image_tag "hm-offers", Height: 100%>
+    </a>
+    <a href="https://www.target.com/" target="_blank" rel="noopener noreferrer">
+    <%= image_tag "deals_target", Height: 100%>
+    </a>
+  </div>
