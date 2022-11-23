@@ -1,7 +1,12 @@
 class BookmarksController < ApplicationController
 
     def index
-        @bookmarks = current_user.bookmarks
+        bookmarks = current_user.bookmarks
+        @recipes = []
+        bookmarks.each do |bookmark|
+            @recipes.push(bookmark.recipe)
+        end 
+        
     end
 
     def show

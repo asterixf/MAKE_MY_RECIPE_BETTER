@@ -3,25 +3,25 @@
     <h1>Make My Recipe Better! <strong>Sharing flavor with the world!!</strong>!</h1>
     <p>United we cook!</p>
     <%= form_with url: recipes_path, method: :get, class: "d-flex col-6" do %>
-    <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-    placeholder: "Find a recipe"
-  %>
-  <%= submit_tag "Search", class: "btn btt-red-sm" %>
-  <% end %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a recipe"
+      %>
+      <%= submit_tag "Search", class: "btn btt-red-sm" %>
+    <% end %>
   </div>
 </div>
 <div class="container my-5">
-<h2><strong>Featured recipes:</strong></h2>
-<p class= "fw-semibold">Not sure what to cook <%= link_to "Show me all recipes!", recipes_path, class: "btn btt-red-sm" %></p>
+  <h2><strong>Featured recipes:</strong></h2>
+  <p class= "fw-semibold">Not sure what to cook <%= link_to "Show me all recipes!", recipes_path, class: "btn btt-red-sm" %></p>
 </div>
 <%= render "shared/recipe_card" %>
-  <div class= "d-flex justify-content-around mt-5">
-    <a href="https://www.homedepot.com/" target="_blank" rel="noopener noreferrer">
-    <%= image_tag "hm-offers", Height: 100%>
-    </a>
-    <a href="https://www.target.com/" target="_blank" rel="noopener noreferrer">
-    <%= image_tag "deals_target", Height: 100%>
-    </a>
-  </div>
+<div class= "d-flex justify-content-around mt-5">
+  <a href="https://www.homedepot.com/" target="_blank" rel="noopener noreferrer">
+  <%= image_tag "hm-offers", Height: 100%>
+  </a>
+  <a href="https://www.target.com/" target="_blank" rel="noopener noreferrer">
+  <%= image_tag "deals_target", Height: 100%>
+  </a>
+</div>
