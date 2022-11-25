@@ -1,11 +1,11 @@
 <div class="container mt-5 col-4">
-<%= form_with url: recipes_path, method: :get, class: "d-flex mb-5" do %>
-  <%= text_field_tag :query,
-    "",
-    class: "form-control",
-    placeholder: "Find a recipe"
-  %>
-  <%= submit_tag "Search", class: "btn btt-red-sm" %>
-<% end %>
+  <%= form_with url: recipes_path, method: :get, class: "d-flex mb-5" do %>
+    <%= text_field_tag :query,
+      "",
+      class: "form-control",
+      placeholder: "Find a recipe"
+    %>
+    <%= submit_tag "Search", class: "btn btt-red-sm" %>
+  <% end %>
 </div>
 <%= render "shared/recipe_card" %>
