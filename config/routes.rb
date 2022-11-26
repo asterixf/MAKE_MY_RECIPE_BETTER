@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :bookmarks, only: [:show, :index]
   end  
-  resources :bookmarks, only: [:destroy]
+  resources :bookmarks, only: [:show, :destroy]
   resources :reviews, only: [:destroy]
 
 end
