@@ -19,3 +19,34 @@ a.btn--orange:hover {
   color: #fff;
   background: #f56500;
 }
+
+
+/* 枠の調整 */
+.round_btn {
+  margin-left: 10px;
+  display: block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #333; /* 枠の調整 */
+  border-radius: 50%;  /* 丸みの度合い */
+  background: #fff; /* ボタンの背景色 */
+}
+
+.round_btn::before, .round_btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px; /* 棒の幅（太さ） */
+  height: 22px; /* 棒の高さ */
+  background: #333; /* バツ印の色 */
+}
+
+.round_btn::before {
+  transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.round_btn::after {
+  transform: translate(-50%,-50%) rotate(-45deg);
+}

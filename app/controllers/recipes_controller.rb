@@ -10,10 +10,12 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @recipe_variations = Recipe.where(recipe_id: @recipe.id)
+    @ingredients = decorate_ingredients(@recipe.ingredients)
   end
 
   def new
     @recipe = Recipe.new
+    @recipe.directions.build
     @old_recipe = Recipe.find(params[:variation]) if params[:variation]
   end
 
@@ -34,7 +36,7 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     @recipe.update(recipe_params)
-    redirect_to recipes_path
+    redirect_to recipe_path
   end
 
   def destroy
@@ -47,9 +49,10 @@ class RecipesController < ApplicationController
 
   def recipe_params
     if params[:recipe][:recipe_id]
-    params.require(:recipe).permit(:name, :photo, :ingredients, :directions, :variation_status, :recipe_id)
+      params.require(:recipe).permit(:name, :photo, :ingredients, :variation_status, :recipe_id)
     else
-    params.require(:recipe).permit(:name, :photo, :ingredients, :directions, :variation_status)
+      params.require(:recipe).permit(:name, :photo, :ingredients, :variation_status,
+                                     directions_attributes: [:id, :step, :_destroy])
     end
   end
 end

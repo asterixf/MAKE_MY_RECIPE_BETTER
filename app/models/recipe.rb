@@ -1,7 +1,10 @@
 class Recipe < ApplicationRecord
   belongs_to :user
   has_one_attached :photo
-  validates :name, :directions, :ingredients, :photo, presence: true
+  has_many :reviews
+  has_many :directions
+  validates :name, :ingredients, :photo, presence: true
+  accepts_nested_attributes_for :directions, allow_destroy: true
 
   include PgSearch::Model
   pg_search_scope :search_by_name_and_ingredients,
@@ -10,7 +13,6 @@ class Recipe < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-  has_many :reviews
 
   def avg_score
     unless self.reviews.empty?

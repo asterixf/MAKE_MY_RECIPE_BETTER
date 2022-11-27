@@ -7,11 +7,19 @@
           <%= cl_image_tag @recipe.photo.key, height: 300, width: 400, crop: :fill, class: "my-3" %>
           <div class="fix-space-info">
             <h3>Ingredients:</h3>
-            <p><%= @recipe.ingredients %></p>
+            <ul>
+              <% @ingredients.each do |ingredient| %>
+                <li><%= ingredient %></li>
+              <% end %>
+            </ul>
           </div>
         </div>
         <h3>Directions:</h3>
-        <p><%= @recipe.directions %></p>
+          <ol>
+            <% @recipe.directions.each do |direction| %>
+              <li><%= direction.step %></li>
+            <% end %>
+          </ol>
         <% if current_user == @recipe.user %>
           <%= link_to "Delete", recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn--orange" %>
           <%= link_to "Edit", edit_recipe_path(@recipe), class: "btn btn--orange" %>
