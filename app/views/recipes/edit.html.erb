@@ -1,10 +1,12 @@
 <div class="container col-6 mt-3 h-container">
-<%= simple_form_for @recipe do |f| %>
-  <%= f.input :name, label: "Recipe Title" %>
-  <%= f.input :photo, as: :file %>
-  <%= f.input :ingredients %>
-  <%= f.input :directions %>
-  <!--<%= f.input :variation_status, as: :boolean, label: "variation recipe" %>-->
-  <%= f.button :submit, class: "btt-red-sm" %>
-<% end %>
+  <%= simple_form_for @recipe do |f| %>
+    <%= f.input :name, label: "Recipe Title", required: true %>
+    <%= f.input :photo, as: :file, required: true %>
+    <%= f.input :ingredients, required: true, label: "Ingredients Ex. (200grams of Meat, rice, milk)" %>
+    <%= f.fields_for :directions do |recipe_subform|  %>
+      <%= recipe_subform.input :step, required: false %>
+      <%= recipe_subform.check_box :_destroy %>
+    <% end %>
+    <%= f.button :submit, class: "btt-red-sm" %>
+  <% end %>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_23_020826) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_26_213310) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_020826) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
+  create_table "directions", force: :cascade do |t|
+    t.text "step"
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_directions_on_recipe_id"
+  end
+
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
     t.string "searchable_type"
@@ -62,7 +70,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_020826) do
 
   create_table "recipes", force: :cascade do |t|
     t.text "ingredients"
-    t.text "directions"
     t.boolean "variation_status"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -103,6 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_020826) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookmarks", "recipes"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "directions", "recipes"
   add_foreign_key "recipes", "users"
   add_foreign_key "reviews", "recipes"
   add_foreign_key "reviews", "users"

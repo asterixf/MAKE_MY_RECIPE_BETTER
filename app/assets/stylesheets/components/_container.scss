@@ -17,3 +17,12 @@
   margin-top: 10px;
   margin-left: 15px;
 }
+
+.step-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.step-field {
+  width: 90%;
+}
