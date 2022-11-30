@@ -1,9 +1,13 @@
-<div class="container">
+<div class="container" data-controller="hello">
  <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-2">
     <% @recipes.each do |recipe| %>
       <%= link_to recipe_path(recipe), class: "card-recipe" do %>
           <div class="card m-2 col">
             <%= cl_image_tag recipe.photo.key, class: "card-img-top" %>
+            <div data-hello-target="bookmark-button">
+            <button data-action="click->hello#addToFavourites"><i class="fa-regular fa-heart bookmark-checker"></i> </button>
+              
+            </div>
             <div class="card-body">
               <h5 class="card-text"><strong><%= recipe.name %></strong></h5></div>
               <div class="average-score mb-3 d-flex justify-content-end">

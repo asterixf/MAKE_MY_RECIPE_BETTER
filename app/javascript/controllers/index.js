@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import { Application } from "@hotwired/stimulus"
+import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
 import HelloController from "./hello_controller"
+
 application.register("hello", HelloController)
