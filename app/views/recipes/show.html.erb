@@ -16,10 +16,16 @@
         </div>
         <h3>Directions:</h3>
           <ol>
-            <% @recipe.directions.each do |direction| %>
+            <% @directions&.each do |direction| %>
               <li><%= direction.step %></li>
             <% end %>
           </ol>
+          <%= simple_form_for @direction, url: directions_path do |f| %>
+            <%= f.input :step, label: "Step" %>
+            <%= f.hidden_field :recipe_id, value: @recipe.id %>
+
+            <%= f.button :submit, class: "btt-red-sm" %>
+          <% end %>
         <% if current_user == @recipe.user %>
           <%= link_to "Delete", recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn--orange" %>
           <%= link_to "Edit", edit_recipe_path(@recipe), class: "btn btn--orange" %>
