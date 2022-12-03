@@ -6,7 +6,6 @@
       <%= f.input :name, label: "Recipe Title", input_html: {value: @old_recipe.name} %>
       <%= f.input :photo, as: :file %>
       <%= f.input :ingredients, input_html: {value: @old_recipe.ingredients}, label: "Ingredients Ex. (200grams of Meat, rice, milk)"%>
-      <%= f.input :directions, input_html: {value: @old_recipe.directions} %>
       <%= f.button :submit, class: "btt-red-sm" %>
     <% end %>
   </div>
@@ -17,17 +16,6 @@
       <%= f.input :name, label: "Recipe Title", required: true %>
       <%= f.input :photo, as: :file, required: true %>
       <%= f.input :ingredients, required: true, label: "Ingredients Ex. (200grams of Meat, rice, milk)" %>
-      <h6>Directions</h6>
-      <%= f.fields_for :directions do |recipe_subform|  %>
-      <div class="step-group" >
-        <div class="step-field">
-          <%= recipe_subform.input :step, required: false, label: false %>
-        </div>
-        <span class="round_btn">
-          <%= recipe_subform.check_box :_destroy %>
-        </span>
-      </div>
-      <% end %>
       <%= f.button :submit, class: "btt-red-sm" %>
     <% end %>
   </div>

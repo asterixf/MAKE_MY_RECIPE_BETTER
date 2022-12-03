@@ -16,14 +16,34 @@
           </div>
         </div>
         <h3>Directions:</h3>
-          <ol>
-            <% @recipe.directions.each do |direction| %>
-              <li><%= direction.step %></li>
-            <% end %>
-          </ol>
+        <ol>
+          <% @directions&.each do |direction| %>
+            <li>
+              <div class="line">
+                <%= direction.step %>
+                  <% if current_user == @recipe.user %>
+                    <%= link_to edit_direction_path(direction) do %>
+                       <i class="fa-solid fa-pen-to-square"></i>
+                    <% end %>
+                    <%= link_to direction_path(direction), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+                      <i class="fa-solid fa-trash"></i>
+                    <% end %>
+                  <% end %>
+              </div>
+            </li>
+          <% end %>
+        </ol>
         <% if current_user == @recipe.user %>
-          <%= link_to "Delete", recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn--orange" %>
+          <%= simple_form_for @direction, url: directions_path do |f| %>
+          <br>
+          <h5><%= f.input :step, label: "Add Step:" %></h5>
+          <%= f.hidden_field :recipe_id, value: @recipe.id %>
+          <%= f.button :submit, class: "btt-red-sm" %>
+        <% end %>
+        <br>
+        <br>
           <%= link_to "Edit", edit_recipe_path(@recipe), class: "btn btn--orange" %>
+          <%= link_to "Delete", recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn--orange" %>
         <% end %>
         <% if @recipe.recipe_id %>
         <% else %>

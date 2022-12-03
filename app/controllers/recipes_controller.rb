@@ -1,9 +1,9 @@
 class RecipesController < ApplicationController
   def index
     if params[:query].present?
-      @recipes = Recipe.where("lower(name) LIKE ?", "%" + params[:query].downcase + "%")
+      @recipes = Recipe.includes(:reviews, photo_attachment: :blob).where("lower(name) LIKE ?", "%" + params[:query].downcase + "%")
     else
-      @recipes = Recipe.all
+      @recipes = Recipe.includes(:reviews, photo_attachment: :blob).all
     end
   end
 
@@ -11,11 +11,12 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe_variations = Recipe.where(recipe_id: @recipe.id)
     @ingredients = decorate_ingredients(@recipe.ingredients)
+    @direction = Direction.new
+    @directions = @recipe.directions if @recipe.directions.any?
   end
 
   def new
     @recipe = Recipe.new
-    @recipe.directions.build
     @old_recipe = Recipe.find(params[:variation]) if params[:variation]
   end
 
@@ -51,8 +52,7 @@ class RecipesController < ApplicationController
     if params[:recipe][:recipe_id]
       params.require(:recipe).permit(:name, :photo, :ingredients, :variation_status, :recipe_id)
     else
-      params.require(:recipe).permit(:name, :photo, :ingredients, :variation_status,
-                                     directions_attributes: [:id, :step, :_destroy])
+      params.require(:recipe).permit(:name, :photo, :ingredients, :variation_status)
     end
   end
 end

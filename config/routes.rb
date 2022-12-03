@@ -7,9 +7,10 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :recipes do
     resources :reviews, only: [:new, :create]
-    resources :directions, only: [:new, :create]
     resources :bookmarks, only: [:new, :create]
   end
+
+  resources :directions, only:  [:new, :create, :edit, :update, :destroy]
 
   resources :users do
     resources :bookmarks, only: [:index]

@@ -4,6 +4,7 @@
       <div class="card-recipe">
           <div class="card m-2 col">
             <%= cl_image_tag recipe.photo.key, class: "card-img-top" %>
+
             <div data-bookmark-target="bookmark-checker">
             <% bookmark = Bookmark.find_by(user: current_user, recipe: recipe) %> 
               <a data-action="click->bookmark#addToFavourites" class=<%= "heart" if bookmark %>>
@@ -13,6 +14,10 @@
                   <i class="fa-regular fa-heart bookmark-checker"></i>
                 <% end %>
               </a> 
+
+            <div data-hello-target="bookmark-button">
+            <button data-action="click->hello#addToFavourites"><i class="fa-regular fa-heart bookmark-checker"></i> </button>
+
             </div>
             <div class="card-body">
               <h5 class="card-text"><strong><%= link_to recipe.name, recipe_path(recipe) %></strong></h5></div>
