@@ -6,6 +6,6 @@ import { application } from "./application"
 
 import { Application } from "@hotwired/stimulus"
 import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
-import HelloController from "./hello_controller"
+import BookmarkController from "./bookmark_controller"
 
-application.register("hello", HelloController)
+application.register("bookmark", BookmarkController)
