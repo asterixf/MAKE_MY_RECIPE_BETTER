@@ -22,11 +22,11 @@
               <div class="line">
                 <%= direction.step %>
                   <% if current_user == @recipe.user %>
-                    <%= link_to edit_direction_path(direction) do %>
-                       <i class="fa-solid fa-pen-to-square"></i>
+                    <%= link_to edit_direction_path(direction), class:"userList" do %>
+                       <i class="fa-solid fa-pen-to-square color"></i>
                     <% end %>
-                    <%= link_to direction_path(direction), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-                      <i class="fa-solid fa-trash"></i>
+                    <%= link_to direction_path(direction), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"userList" do %>
+                      <i class="fa-solid fa-trash color"></i>
                     <% end %>
                   <% end %>
               </div>
@@ -35,10 +35,9 @@
         </ol>
         <% if current_user == @recipe.user %>
           <%= simple_form_for @direction, url: directions_path do |f| %>
-          <br>
-          <h5><%= f.input :step, label: "Add Step:" %></h5>
+          <h5><%= f.input :step, label: "Add Step:", required: true %></h5>
           <%= f.hidden_field :recipe_id, value: @recipe.id %>
-          <%= f.button :submit, class: "btt-red-sm" %>
+          <%= f.button :submit, value: "Add", class: "btt-red-sm" %>
         <% end %>
         <br>
         <br>

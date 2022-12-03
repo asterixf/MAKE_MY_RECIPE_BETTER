@@ -1,5 +1,7 @@
-<%= simple_form_for @direction do |f| %>
-  <h5><%= f.input :step, label: "Add Step:" %></h5>
-  <%= f.hidden_field :recipe_id, value: @direction.recipe.id %>
-  <%= f.button :submit, class: "btt-red-sm" %>
-<% end %>
+<div class="container col-6 mt-3 h-container">
+  <%= simple_form_for @direction do |f| %>
+    <h5><%= f.input :step, label: "Edit Step:" %></h5>
+    <%= f.hidden_field :recipe_id, value: @direction.recipe.id %>
+    <%= f.button :submit, value: "Edit", class: "btt-red-sm" %>
+  <% end %>
+</div>
