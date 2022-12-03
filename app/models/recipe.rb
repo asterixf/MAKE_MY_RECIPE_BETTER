@@ -3,6 +3,7 @@ class Recipe < ApplicationRecord
   has_one_attached :photo
   has_many :reviews
   has_many :directions
+  #has_many :bookmarks
   validates :name, :ingredients, :photo, presence: true
   accepts_nested_attributes_for :directions, allow_destroy: true
 

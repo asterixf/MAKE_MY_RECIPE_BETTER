@@ -1,9 +1,20 @@
-<div class="container" data-controller="hello">
+<div class="container" data-controller="bookmark">
  <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-2">
     <% @recipes.each do |recipe| %>
       <div class="card-recipe">
           <div class="card m-2 col">
             <%= cl_image_tag recipe.photo.key, class: "card-img-top" %>
+
+            <div data-bookmark-target="bookmark-checker">
+            <% bookmark = Bookmark.find_by(user: current_user, recipe: recipe) %> 
+              <a data-action="click->bookmark#addToFavourites" class=<%= "heart" if bookmark %>>
+                <% if bookmark %>
+                  <i class="fa-solid fa-heart bookmark-checker"></i>
+                <% else %>
+                  <i class="fa-regular fa-heart bookmark-checker"></i>
+                <% end %>
+              </a> 
+
             <div data-hello-target="bookmark-button">
             <button data-action="click->hello#addToFavourites"><i class="fa-regular fa-heart bookmark-checker"></i> </button>
 
