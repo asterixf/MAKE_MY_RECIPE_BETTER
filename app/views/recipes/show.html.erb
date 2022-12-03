@@ -3,7 +3,7 @@
     <div class="col-12 col-lg-8">
       <div class="recipe_show_wrapper">
         <h2 class="recipe-title"><%= @recipe.name %></h2>
-        <button class = "fav-button"><i class="fa fa-heart" style="font-size:36px;"></i></button>
+        <button class = "fav-button"><i class="fa fa-heart" style="font-size:36px;"></i>Save Recipe to Bookmarks</button>
         <div class="d-flex fix-space" >
           <%= cl_image_tag @recipe.photo.key, height: 300, width: 400, crop: :fill, class: "my-3" %>
           <div class="fix-space-info">
