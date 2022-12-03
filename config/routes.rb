@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :bookmarks, only: [:new, :create]
   end
 
-  resources :directions, only: [:new, :create]
+  resources :directions, only:  [:new, :create, :edit, :update, :destroy]
 
   resources :users do
     resources :bookmarks, only: [:show, :index]

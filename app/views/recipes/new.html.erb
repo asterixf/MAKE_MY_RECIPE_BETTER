@@ -6,7 +6,6 @@
       <%= f.input :name, label: "Recipe Title", input_html: {value: @old_recipe.name} %>
       <%= f.input :photo, as: :file %>
       <%= f.input :ingredients, input_html: {value: @old_recipe.ingredients}, label: "Ingredients Ex. (200grams of Meat, rice, milk)"%>
-      <%= f.input :directions, input_html: {value: @old_recipe.directions} %>
       <%= f.button :submit, class: "btt-red-sm" %>
     <% end %>
   </div>
