@@ -2,10 +2,11 @@ class DirectionsController < ApplicationController
   def create
     @direction = Direction.new(direction_params)
     if @direction.save
-      redirect_to @direction.recipe
+      flash[:notice] = "Step was saved succesfuly"
     else
-      render :new, status: :unprocessable_entity
+      flash[:alert] = @direction.errors.full_messages.join(", ")
     end
+    redirect_to @direction.recipe
   end
 
   def edit
