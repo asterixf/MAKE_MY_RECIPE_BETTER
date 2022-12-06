@@ -12,4 +12,13 @@ class User < ApplicationRecord
   has_many :recipes, through: :bookmarks
   has_many :reviews
   has_one_attached :photo
+
+
+
+  def bookmark_this?(recipe)
+    bookmarks.each do |bookmark|
+      return true if bookmark.recipe == recipe
+    end
+    return false
+  end
 end

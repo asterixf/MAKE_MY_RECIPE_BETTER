@@ -25,7 +25,9 @@ class BookmarksController < ApplicationController
      end
 
      def destroy
-        @bookmark = Bookmark.find(params[:id])
+        @recipe = Recipe.find(params[:id])
+        @bookmark = current_user.bookmarks.find_by(recipe_id: @recipe.id)
         @bookmark.destroy
+        redirect_to recipe_path(@recipe)
      end
 end
