@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :recipes do
     resources :reviews, only: [:new, :create]
-    resources :bookmarks, only: [:new, :create]
   end
 
   resources :directions, only:  [:new, :create, :edit, :update, :destroy]
@@ -15,6 +14,10 @@ Rails.application.routes.draw do
   resources :users do
     resources :bookmarks, only: [:index]
   end
-  resources :bookmarks, only: [:destroy]
+
+
+
+
+  resources :bookmarks, only: [:create, :destroy]
   resources :reviews, only: [:destroy]
 end
