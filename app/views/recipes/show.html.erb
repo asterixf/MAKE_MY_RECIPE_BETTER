@@ -4,10 +4,10 @@
       <div class="recipe_show_wrapper">
         <h2 class="recipe-title"><%= @recipe.name %></h2>
          <% if current_user.bookmark_this?(@recipe) %>
-            <%= link_to bookmark_path(@recipe), data: { turbo_method: :delete }  do %>
-              <p>
-                <i class="fa fa-heart" style="font-size:26px;"></i>Remove Recipe from Bookmarks
-              </p>
+            <%= link_to bookmark_path(@recipe), class:"fav-heart",data: { turbo_method: :delete }  do %>
+              <div class="d-flex justify-content-end">
+                <i class="fa fa-heart" style="font-size:26px;"></i>
+              </div>
             <% end %>
         <% else %>
           <%= link_to bookmarks_path(recipe_id: @recipe), data: { turbo_method: :post } do %>
