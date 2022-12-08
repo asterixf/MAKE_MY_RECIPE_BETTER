@@ -4,8 +4,8 @@ class BookmarksController < ApplicationController
         @recipes = []
         bookmarks.each do |bookmark|
             @recipes.push(bookmark.recipe)
-        end 
-        
+        end
+
     end
 
     def show
@@ -22,6 +22,7 @@ class BookmarksController < ApplicationController
         @bookmark = Bookmark.new(user: @user, recipe: @recipe)
         @bookmark.save
         redirect_to recipe_path(@recipe)
+        flash[:notice] = "Bookmark saved!"
      end
 
      def destroy
@@ -29,5 +30,6 @@ class BookmarksController < ApplicationController
         @bookmark = current_user.bookmarks.find_by(recipe_id: @recipe.id)
         @bookmark.destroy
         redirect_to recipe_path(@recipe)
+        flash[:notice] = "Bookmark deleted!"
      end
 end

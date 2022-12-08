@@ -2,20 +2,22 @@
   <div class="row">
     <div class="col-12 col-lg-8">
       <div class="recipe_show_wrapper">
-        <h2 class="recipe-title"><%= @recipe.name %></h2>
-         <% if current_user.bookmark_this?(@recipe) %>
-            <%= link_to bookmark_path(@recipe), class:"fav-heart",data: { turbo_method: :delete }  do %>
-              <div class="d-flex justify-content-end">
-                <i class="fa fa-heart" style="font-size:26px;"></i>
-              </div>
+        <% if user_signed_in? %>
+          <% if current_user.bookmark_this?(@recipe) %>
+              <%= link_to bookmark_path(@recipe), class:"fav-heart",data: { turbo_method: :delete }  do %>
+                <div class="d-flex justify-content-end">
+                  <i class="fa-solid fa-heart" style="font-size:30px; color:red;" title="Delete from bookmarks"></i>
+                </div>
+              <% end %>
+              <% else %>
+              <%= link_to bookmarks_path(recipe_id: @recipe), class:"fav-heart", data: { turbo_method: :post } do %>
+                <div class="d-flex justify-content-end">
+                  <i class="fa-regular fa-heart" style="font-size:30px; color:red;" title="Save to bookmarks"></i>
+                </div>
+              <% end %>
             <% end %>
-        <% else %>
-          <%= link_to bookmarks_path(recipe_id: @recipe), data: { turbo_method: :post } do %>
-            <p>
-              <i class="fa fa-heart" style="font-size:26px;"></i>Save Recipe to Bookmarks
-            </p>
-          <% end %>
         <% end %>
+        <p class="h2" style="font-weight:bold; mb-3"><%= @recipe.name %></p>
         <div class="d-flex fix-space" >
           <%= cl_image_tag @recipe.photo.key, height: 300, width: 400, crop: :fill, class: "my-3" %>
           <div class="fix-space-info">
