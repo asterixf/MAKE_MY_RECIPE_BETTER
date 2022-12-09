@@ -4,13 +4,14 @@
       <div class="recipe_show_wrapper">
         <% if user_signed_in? %>
           <% if current_user.bookmark_this?(@recipe) %>
-              <%= link_to bookmark_path(@recipe), class:"fav-heart",data: { turbo_method: :delete }  do %>
-                <div class="d-flex justify-content-end">
-                  <i class="fa-solid fa-heart" style="font-size:30px; color:red;" title="Delete from bookmarks"></i>
+              <%= link_to bookmark_path(@recipe), style:"text-decoration:none;", data: { turbo_method: :delete }  do %>
+                <div class="d-flex justify-content-end , class="fav-heart">
+                  <i class="fa-solid fa-heart" style="font-size:30px; color:red; text-decoration:none
+                  !important;" title="Delete from bookmarks"></i>
                 </div>
               <% end %>
               <% else %>
-              <%= link_to bookmarks_path(recipe_id: @recipe), class:"fav-heart", data: { turbo_method: :post } do %>
+              <%= link_to bookmarks_path(recipe_id: @recipe), style:"text-decoration:none;", data: { turbo_method: :post } do %>
                 <div class="d-flex justify-content-end">
                   <i class="fa-regular fa-heart" style="font-size:30px; color:red;" title="Save to bookmarks"></i>
                 </div>
